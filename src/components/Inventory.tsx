@@ -110,7 +110,6 @@ export const Inventory = () => {
           ))}
         </div>
 
-        {/* Inventory Stats */}
         <div className="mt-12 rpg-card max-w-2xl mx-auto">
           <h3 className="font-pixel text-xl text-fantasy-gold mb-6 text-center">
             INVENTORY STATS
