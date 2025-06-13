@@ -35,7 +35,7 @@ export const HeroSection = () => {
         <div className="mb-8 relative">
           <div className="w-32 h-32 mx-auto mb-6 relative">
             <img
-              src="/uploads/2357864e-107b-4d88-9761-bc97484c34c7.png"
+              src={`${import.meta.env.BASE_URL}uploads/2357864e-107b-4d88-9761-bc97484c34c7.png`}
               alt="Petr Novák - Avatar"
               className="w-full h-full rounded-lg border-4 border-fantasy-gold shadow-2xl object-cover"
               style={{
