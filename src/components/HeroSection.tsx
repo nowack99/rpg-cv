@@ -4,7 +4,7 @@ export const HeroSection = () => {
   const [showContent, setShowContent] = useState(false);
 
   // Calculate level based on birth date
-  const birthDate = new Date(1999, 11, 27); // Months are 0-indexed
+  const birthDate = new Date(1999, 11, 27);
   const today = new Date();
   const ageInMs = today.getTime() - birthDate.getTime();
   const ageInYears = ageInMs / (1000 * 60 * 60 * 24 * 365.25);
@@ -18,10 +18,21 @@ export const HeroSection = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const scrollToStats = () => {
+    setTimeout(() => {
+      const section = document.getElementById("character-sheet");
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      } else {
+        console.warn("Element #character-sheet not found in DOM.");
+      }
+    }, 100);
+  };
+
   return (
     <section className="min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0 opacity-20">
+      {/* Decorative elements (now with pointer-events-none and z-index fix) */}
+      <div className="absolute inset-0 opacity-20 pointer-events-none -z-10">
         <div className="absolute top-20 left-10 w-8 h-8 bg-fantasy-gold rounded-sm animate-pulse"></div>
         <div className="absolute top-40 right-20 w-6 h-6 bg-fantasy-emerald rounded-sm animate-pulse delay-300"></div>
         <div className="absolute bottom-40 left-20 w-4 h-4 bg-fantasy-ruby rounded-sm animate-pulse delay-700"></div>
@@ -83,13 +94,12 @@ export const HeroSection = () => {
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap gap-4 justify-center">
-          <button className="bg-gradient-to-r from-fantasy-emerald to-fantasy-sapphire hover:from-fantasy-sapphire hover:to-fantasy-emerald font-pixel text-white px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg">
-            START QUEST
-          </button>
-
-          <button className="bg-gradient-to-r from-fantasy-gold to-fantasy-copper hover:from-fantasy-copper hover:to-fantasy-gold font-pixel text-dungeon-950 px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg">
+        {/* Action Button */}
+        <div className="flex justify-center">
+          <button
+            onClick={scrollToStats}
+            className="bg-gradient-to-r from-fantasy-gold to-fantasy-copper hover:from-fantasy-copper hover:to-fantasy-gold font-pixel text-dungeon-950 px-6 py-3 rounded-lg transition-all duration-300 hover:scale-105 shadow-lg"
+          >
             VIEW STATS
           </button>
         </div>
